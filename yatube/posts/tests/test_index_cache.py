@@ -37,7 +37,8 @@ class CacheTests(TestCase):
         Post.objects.filter(id=1).delete()
         # Проверяем отуствие поста в БД
         self.assertNotEqual(posts_count, Post.objects.count())
-        # print(f'Количество постов в базе после удаления поста = {Post.objects.count()}')
+        # print(('Количество постов в базе после удаления поста = '
+        #       f'{Post.objects.count()}'))
         # Проверям доступyность поста на странице из кеша
         self.assertEqual(content, self.client.get(MAIN_PAGE_URL).content)
         # Очищаем кеш
