@@ -143,10 +143,7 @@ dmypy.json
 # Local History for Visual Studio Code
 .history/
 
+# static
+yatube/static/
+
 .mypy_cache
-
-# папки со статикой и медиа
-static/
-yatube/posts/static/
-yatube/media/
-

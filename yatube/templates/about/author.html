@@ -1,0 +1,13 @@
+<!-- templates/about/author.html -->
+{% extends "base.html" %}
+{% block title %}Об авторе проекта{% endblock %}
+{% block content %}
+{% load static %}
+<div class="container py-5"> 
+<h1>Привет, я автор</h1>
+<p>
+  Ссылка на мой профиль <a href="https://github.com/Andr3w-k"> github</a>
+</p>
+  <img src="{% static 'img/MyThinkPad.jpg' %}">
+</div>  
+{% endblock %}
