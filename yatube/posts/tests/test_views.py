@@ -162,32 +162,32 @@ class PaginatorTests(TestCase):
 
     # Проверка пажинатора
     def test_index_page_1_list_is_10(self):
-        '''На страницу 1 в index выводится по 10 постов.'''
+        """На страницу 1 в index выводится по 10 постов."""
         response = self.guest_client.get(MAIN_PAGE_URL)
         self.assertEqual(len(response.context['page_obj']), 10)
 
     def test_index_page_2_list_is_7(self):
-        '''На страницу 2 в index выводится по 7 постов.'''
+        """На страницу 2 в index выводится по 7 постов."""
         response = self.guest_client.get(MAIN_PAGE_URL + '?page=2')
         self.assertEqual(len(response.context['page_obj']), 7)
 
     def test_group_list_page_1_list_is_10(self):
-        '''На страницу 1 в group_list выводится по 10 постов.'''
+        """На страницу 1 в group_list выводится по 10 постов."""
         response = self.guest_client.get(self.GROUP_PAGE_URL)
         self.assertEqual(len(response.context['page_obj']), 10)
 
     def test_group_list_page_2_list_is_3(self):
-        '''На страницу 2 в group_list выводится по 3 постa.'''
+        """На страницу 2 в group_list выводится по 3 постa."""
         response = self.guest_client.get(self.GROUP_PAGE_URL + '?page=2')
         self.assertEqual(len(response.context['page_obj']), 3)
 
     def test_profile_list_page_1_list_is_10(self):
-        '''На страницу 1 в profile выводится по 10 постов.'''
+        """На страницу 1 в profile выводится по 10 постов."""
         response = self.guest_client.get(self.PROFILE_PAGE_URL)
         self.assertEqual(len(response.context['page_obj']), 10)
 
     def test_profile_page_2_list_is_7(self):
-        '''На страницу 2 в profile выводится по 7 постов.'''
+        """На страницу 2 в profile выводится по 7 постов."""
         response = self.guest_client.get(self.PROFILE_PAGE_URL + '?page=2')
         self.assertEqual(len(response.context['page_obj']), 7)
 

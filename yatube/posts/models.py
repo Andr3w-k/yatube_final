@@ -19,6 +19,10 @@ class Group(models.Model):
         'Описание', help_text='Введите описание группы'
     )
 
+    class Meta:
+        verbose_name = 'Группа'
+        verbose_name_plural = 'Группы'
+
     def __str__(self):
         return self.title
 
@@ -63,7 +67,7 @@ class Comment(models.Model):
         Post,
         on_delete=models.CASCADE,
         related_name='comments',
-        verbose_name='Комментарии'
+        verbose_name='Пост'
     )
     author = models.ForeignKey(
         User,
@@ -78,10 +82,12 @@ class Comment(models.Model):
     created = models.DateTimeField('Опубликовано', auto_now_add=True)
 
     class Meta:
-        ordering = ['created']  # ('-created',)
+        ordering = ('-created',)
+        verbose_name = 'Комментарий'
+        verbose_name_plural = 'Комментарии'
 
     def __str__(self):
-        return self.text
+        return f'{self.text[:15]}, от автора {self.author}'
 
 
 class Follow(models.Model):
@@ -97,3 +103,20 @@ class Follow(models.Model):
         related_name='following',
         verbose_name='Автор',
     )
+
+    class Meta:
+        verbose_name = 'Подписка'
+        verbose_name_plural = 'Подписки'
+        constraints = [
+            models.UniqueConstraint(
+                name='unique subscription',
+                fields=['user', 'author'],
+            ),
+            models.CheckConstraint(
+                name='prevent_self_follow',
+                check=~models.Q(user=models.F('author')),
+            ),
+        ]
+
+    def __str__(self):
+        return f'Юзер {self.user} подписан на автора {self.author}'

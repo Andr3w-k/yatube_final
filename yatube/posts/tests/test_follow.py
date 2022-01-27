@@ -1,3 +1,4 @@
+from django.db import IntegrityError
 from django.test import Client, TestCase
 from django.urls import reverse
 
@@ -77,6 +78,13 @@ class FollowTests(TestCase):
         self.assertEqual(Follow.objects.count(), follow_count - 1)
         # print('Количество постов в базе после отписки = '
         #       f'{Follow.objects.count()}')
+
+    def test_no_self_follow(self):
+        """Проверка ошибки подписки пользователя на самого себя"""
+        user = User.objects.create()
+        constraint_name = 'prevent_self_follow'
+        with self.assertRaisesMessage(IntegrityError, constraint_name):
+            Follow.objects.create(user=user, author=user)
 
     def test_follow_post_appear(self):
         """Проверка появления нового поста на странице follow у подписчика"""

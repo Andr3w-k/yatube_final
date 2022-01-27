@@ -9,8 +9,8 @@ class PostForm(forms.ModelForm):
         model = Post
         fields = ('text', 'group', 'image')
         help_texts = {
-            'text': "Введите текст поста",
-            'group': "Выберите группу",
+            'text': 'Введите текст поста',
+            'group': 'Выберите группу',
         }
 
     def clean_text(self):
@@ -27,7 +27,7 @@ class CommentForm(forms.ModelForm):
         model = Comment
         fields = ('text',)
         help_texts = {
-            'text': "Введите текст комментария",
+            'text': 'Введите текст комментария',
         }
 
     def clean_text(self):
