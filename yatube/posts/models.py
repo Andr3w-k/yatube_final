@@ -107,16 +107,16 @@ class Follow(models.Model):
     class Meta:
         verbose_name = 'Подписка'
         verbose_name_plural = 'Подписки'
-        constraints = [
+        constraints = (
             models.UniqueConstraint(
                 name='unique subscription',
-                fields=['user', 'author'],
+                fields=('user', 'author',),
             ),
             models.CheckConstraint(
                 name='prevent_self_follow',
                 check=~models.Q(user=models.F('author')),
             ),
-        ]
+        )
 
     def __str__(self):
         return f'Юзер {self.user} подписан на автора {self.author}'

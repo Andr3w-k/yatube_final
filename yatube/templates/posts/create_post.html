@@ -37,11 +37,11 @@
                     <label for="id_group">
                       Группа                  
                     </label>
-                    <select name="group" class="form-control" id="id_group">
+                    <select name="group" class="form-control" id=constraint"id_group">
                       <option value="" selected>---------</option>
-                      {% for group in groups %}
-                          <option value="{{ group.pk }}">{{ group.title }}</option>
-                      {% endfor %}
+                        {% for group in groups %}
+                        <option value="{{ group.pk }}"{% if group.pk == form.instance.group.pk %} selected{% endif %}>{{ group.title }}</option>
+                        {% endfor %}
                     </select>
                     <small id="id_group-help" class="form-text text-muted">
                       {{ form.group.help_text }}
@@ -52,11 +52,17 @@
                     <label for="id_image">
                       Картинка                      
                     </label>
+                      {% if form.instance.image %}
+                      На данный момент: <a href="{{ form.instance.image.url }}"> {{ form.instance.image.name }} </a>
+                      <input type="checkbox" name="image-clear" id="image-clear_id">
+                      <label for="image-clear_id">Очистить</label><br>
+                      Изменить:
+                      {% endif %} 
                     <input type="file" name="image" accept="image/*" class="form-control" id="id_image"> 
                   </div>
                   <div class="d-flex justify-content-end">
                     <button type="submit" class="btn btn-primary">
-                      {% if is_edit %}
+                    {% if is_edit %}
                       Добавить
                     {% else %}
                       Сохранить
