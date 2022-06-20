@@ -1,3 +1,10 @@
-# hw05_final
+# Социальная сеть Yatube
 
-[![CI](https://github.com/yandex-praktikum/hw05_final/actions/workflows/python-app.yml/badge.svg?branch=master)](https://github.com/yandex-praktikum/hw05_final/actions/workflows/python-app.yml)
+### Для чего этот проект:
+Социальная сеть позволяет просматривать и размещать посты. К постам можно добавлять изображения. 
+Доступна подписка на любимых авторов.
+
+### Технологии:
+- Python 3.7
+- Django 3.0
+- Unittest
